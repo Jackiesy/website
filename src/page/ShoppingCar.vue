@@ -51,13 +51,13 @@
                     </el-table-column>
                     <el-table-column
                             label="XXXXX公司"
-                            width="120">
+                            width="300">
                         <template slot-scope="scope">{{ scope.row.date }}</template>
                     </el-table-column>
                     <el-table-column
                             prop="totalPrice"
                             label="总价"
-                            width="200">
+                           >
                     </el-table-column>
                     <el-table-column
                             prop="number"
