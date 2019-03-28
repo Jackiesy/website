@@ -1,0 +1,29 @@
+$bg_color: #f08200;
+$btn_color:#E93535;
+$order-title-color: #484848;
+$default-font-color: #333;
+$orange-active: #EF8200;
+$money-red: #E93535;
+
+.el-step__title.is-finish {
+  color: $bg_color;
+}
+
+.el-step__main {
+  text-align: center;
+}
+
+.el-step__head.is-finish {
+  border-color: $bg_color;
+  color: $bg_color;
+}
+
+.el-table__footer-wrapper, .el-table__header-wrapper {
+  border-top: 2px solid $bg_color;
+}
+.el-table .cell.el-tooltip {
+  text-align: center;
+}
+.el-table th>.cell {
+  text-align: center;
+}

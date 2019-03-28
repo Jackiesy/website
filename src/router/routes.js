@@ -8,7 +8,13 @@ export default [{
         path: '',
         component: r => require.ensure([], () => r(require('../page/ShoppingCar')), 'shoppingcart')
     },  {
-        path: '/hello',
-        component: r => require.ensure([], () => r(require('../page/HelloWorld')), 'hello')
-    },]
+        path: '/payment',
+        component: r => require.ensure([], () => r(require('../page/Payment')), 'payment')
+    },{
+        path: '/myorder',
+        component: r => require.ensure([], () => r(require('../page/MyOrder')), 'myorder')
+    },
+        { path: '/orderdetail',
+    component: r => require.ensure([], () => r(require('../page/OrderDetails')), 'orderdetail')
+}]
 }]

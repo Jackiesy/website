@@ -1,35 +1,9 @@
 <template>
-    <div class="bg">
+    <div class="bg" >
         <!--  <h1>home</h1>
         <p>{{msg}}</p>-->
-        <div class="shopping" :style="{width:width+'px'}">
-            <div class="shopping_header">
-                <div class="shoppinp_content">
-                    <div class="shopping_logo"><img src="../assets/logo.png"/>
-                        <div><p>社会化应急物资装备</p>
-                            <p>大数据平台</p>
-                        </div>
-                    </div>
-                    <div class="right_search">
-                        <div>
-                            <el-input placeholder="找产品 | 找方案 | 找专家" class="search" v-model="xxx"/>
-                            <el-button slot="append" icon="el-icon-search" class="search_icon"></el-button>
-                        </div>
-                        <span class="span">或</span>
-                        <!--<el-select v-model="value" placeholder="免费发需求" class="select_header">-->
-                            <!--<el-option-->
-                                    <!--v-for="item in options"-->
-                                    <!--:key="item.value"-->
-                                    <!--:label="item.label"-->
-                                    <!--:value="item.value"-->
-                            <!--&gt;-->
-                            <!--</el-option>-->
-                        <!--</el-select>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="car_content">
+        <Header/>
+        <div class="car_content" >
             <div :style="{width:width/3+'px'}">
                 <el-steps :active="1" align-center>
                     <el-step title="1.我的购物车"></el-step>
@@ -86,26 +60,33 @@
                             prop="operation"
                             label="操作"
                             show-overflow-tooltip>
-                        <template slot-scope="scope"><p @click="showStar"><i v-if="starton" class="el-icon-star-off"/><i
-                                v-if="show" class="el-icon-star-on"/>收藏</p>
-                            <p><i class="el-icon-delete"/>删除</p>
+                        <template slot-scope="scope">
+                            <el-button type="danger" round class="dele_btn">删除订单</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
+                <div class="all">
+                    <div class="all_first"><el-checkbox v-model="checked">全选</el-checkbox> <p>删除选中产品</p></div>
+                    <div class="select_prd"><p>已选择<span>1</span>件商品</p>
+                    <div class="all_pricePrice">
+                        <p >总价:<span>￥100000</span></p>
+                        <el-button type="primary"  class="total_btn">去结算<i class="el-icon-arrow-right"></i></el-button>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 </template>
 <script>
-
+import Header from '../components/Header'
     export default {
         name: 'ShoppingCart',
+        components: {Header},
         data() {
             return {
                 num1: 1,
-                show: false,
-                starton: true,
                 width: document.body.offsetWidth,
                 tableData: [{
                     totalPrice: '10000000',
@@ -117,14 +98,15 @@
                     operation: '上海市普陀区金沙江路 1518 弄'
                 }],
                 multipleSelection: [],
-                xxx: ""
+
             }
+            checked: false
         },
         methods: {
             toggleSelection(rows) {
                 if (rows) {
                     rows.forEach(row => {
-                        console.log(row,'123')
+                        console.log(row, '123')
                         this.$refs.multipleTable.toggleRowSelection(row);
                     });
                 } else {
@@ -132,23 +114,18 @@
                 }
             },
             handleSelectionChange(val) {
-                console.log(val,'aaaa')
+                console.log(val, 'aaaa')
                 this.multipleSelection = val;
             },
             handleChange(value) {
                 console.log(value);
             },
-            showStar() {
-                this.show = !this.show
-                this.starton = !this.starton
-            },
 
         }
-
     }
 </script>
 <style lang="scss">
-    $bg_color: #f08200;
+    @import "../style/global";
     .bg {
         background: #f5f5f5;
 
@@ -258,24 +235,66 @@
                 }
             }
 
+
+
+        }
+    }
+    .all{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #eee;
+        background: #fff;
+        padding-left: 13px;
+        margin-top: 10px;
+        color: #484848;
+        font-size: 16px;
+        height: 48px;
+        .all_first{
+            display: flex;
+            align-items: center;
+            p{
+                font-size: 14px;
+                cursor: pointer;
+            }
+        }
+        .select_prd{
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            span{
+                color: $btn_color;
+            }
+        }
+        .all_pricePrice{
+            display: flex;
+            align-items: center;
+            p{
+                margin:0 30px;
+            }
+            span{
+                color: $btn_color;
+            }
+        }
+        .total_btn{
+            height: 48px;
+            border-radius: 0;
+            width: 128px;
+            background-color:$btn_color ;
+            border-color:$btn_color;
+            font-size: 20px;
+            span{
+                color: #fff;
+            }
         }
     }
 
-    .el-step__title.is-finish {
-        color: $bg_color;
-    }
 
-    .el-step__main {
-        text-align: center;
+    .el-button--danger {
+        background: #fff;
+        color: $btn_color;
     }
-
-    .el-step__head.is-finish {
-        border-color: $bg_color;
-        color: $bg_color;
-    }
-
-    .el-table__footer-wrapper, .el-table__header-wrapper {
-        border-top: 2px solid $bg_color;
+    .el-button.is-round {
+        padding: 7px 21px;
     }
 
 </style>
