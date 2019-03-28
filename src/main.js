@@ -10,11 +10,17 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+const eventhub = new Vue();
 const router = new VueRouter({
-  routes
+    routes
 })
 
+Vue.use({
+    install(V) {
+        V.prototype.$eventhub = eventhub
+    }
 
+})
 new Vue({
-  render: h => h(App),router,
+    render: h => h(App), router,
 }).$mount('#app')

@@ -53,6 +53,7 @@
                 console.log(key, keyPath);
             },
         }
+
     }
 </script>
 <style lang="scss">
@@ -99,7 +100,6 @@
             }
 
         }
-
         .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
             background: $bg_color;
             color: #fff;
